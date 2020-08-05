@@ -1,3 +1,7 @@
+.nav-item {
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;
+}
 .container {
   padding: 30px 0;
   padding-bottom: 50px;
@@ -21,12 +25,18 @@
         text-align: left;
         color: #205d85;
         text-decoration: none;
+        @media only screen and (max-width: 769px) {
+          font-size: 16px;
+        }
       }
     }
     .panel-collapse {
       .panel-body {
         text-align: left;
         padding: 15px 30px 30px 30px;
+        @media only screen and (max-width: 769px) {
+          font-size: 14px;
+        }
         a {
           color: #3d95d1;
           font-weight: bold;

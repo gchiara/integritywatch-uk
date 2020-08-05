@@ -29,17 +29,18 @@ $color_TI_darker: darken( $color_TI, 20% );
   margin: 0;
   background: #fafafa;
   .chart-title {
-    font-size: 20px;
+    font-size: 19px;
     text-align: left;
+    text-transform: uppercase;
     color: $color_TI_darker;
-    @media only screen and (max-width: 1400px) {
+    @media only screen and (max-width: 1410px) {
       font-size: 18px;
     }
-    @media only screen and (max-width: 1250px) {
+    @media only screen and (max-width: 1300px) {
       font-size: 16px;
     }
     @media only screen and (max-width: 767px) {
-      font-size: 20px;
+      font-size: 18px;
     }
   }
   .chart-header-buttons {

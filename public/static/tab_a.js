@@ -65604,7 +65604,7 @@ var vuedata = {
       info: 'This pie chart shows the proportion of meetings hosted by the level of Ministerial office. Click on the pie chart to filter the rest of the tool by the level of Ministerial office.'
     },
     department: {
-      title: 'DEPARTMENT',
+      title: 'Top 10 Departments',
       info: 'Filter by department.'
     },
     hosts: {
@@ -65612,7 +65612,7 @@ var vuedata = {
       info: 'This bar chart shows the Ministers who have had the most contact with lobby organisations. When Ministers meet several lobby organisations in a single meeting, the tool counts each contact separately. The number of contacts can therefore be higher than the number of meetings. Click on the bar chart to filter the rest of the tool by Minister.'
     },
     organizations: {
-      title: 'TOP 10 ORGANISATIONS',
+      title: 'Top 10 Lobbyists',
       info: 'This bar chart shows the lobby organisations who have had the most contact with Ministers. When Ministers meet several lobby organisations in a single meeting, the tool counts each contact separately. The number of contacts can therefore be higher than the number of meetings. Click on the bar chart to filter the rest of the tool by lobby organisation.'
     },
     subject: {
@@ -65636,7 +65636,7 @@ var vuedata = {
     generic: ["#981b48", "#b7255a", "#d73771", "#ec5189", "#ec7ca6"],
     //default: "#2180c2",
     default: "#d73771",
-    default1: "#f9b41b",
+    default1: "#3694d1",
     colorSchemeCloud: ["#981b48", "#b7255a", "#d73771", "#ec5189", "#ec7ca6", "#f9b41b", "#e77a31", "#ffc138"] //colorSchemeCloud: [ "#4d9e9c", "#62aad9", "#3b95d0", "#42b983", "#449188", "#52c993", "#b7bebf", "#99b6c0" ]
 
   } //Set vue components and Vue app
@@ -65737,7 +65737,7 @@ var calcPieSize = function calcPieSize(divId) {
     'legendY': 0
   };
 
-  if (newWidth < 300) {
+  if (newWidth < 270) {
     sizes.height = newWidth + 170;
     sizes.radius = newWidth / 2;
     sizes.innerRadius = newWidth / 4;
@@ -65889,7 +65889,7 @@ var lobbyist_typeList = {};
 
   var ndx = crossfilter(events);
   var searchDimension = ndx.dimension(function (d) {
-    var entryString = d.rep_new + " " + d.organisation + " " + d.purpose + " ";
+    var entryString = d.rep_new + " " + d.organisation + " " + d.purpose + " " + d.policy_level + " " + d.department + " " + d.ministerialLevel;
     return entryString.toLowerCase();
   });
   var dateEvent = ndx.dimension(function (d) {
@@ -66029,7 +66029,7 @@ var lobbyist_typeList = {};
 
     var width = recalcWidth(charts.organizations.divId);
     var charsLength = recalcCharsLength(width);
-    chart.width(width).height(530).margins({
+    chart.width(width).height(560).margins({
       top: 0,
       left: 0,
       right: 0,
@@ -66190,7 +66190,19 @@ var lobbyist_typeList = {};
   function doneTyping() {
     var s = $input.val().toLowerCase();
     searchDimension.filter(function (d) {
-      return d.indexOf(s) !== -1;
+      var d2 = d.replace(/ and /ig, ' & '); //Split words
+      //.replace(/,/ig, ' ')
+
+      var splitSearch = s.replace(/ and /ig, ' & ').replace(/,/ig, ' ').replace(/  /ig, ' ').split(" ");
+      var match = true;
+
+      _.each(splitSearch, function (w) {
+        if (d2.indexOf(w) == -1) {
+          match = false;
+        }
+      });
+
+      return match; //return d.indexOf(s) !== -1;
     });
     throttle();
     var throttleTimer;
@@ -66374,9 +66386,9 @@ var lobbyist_typeList = {};
       }
     }).renderlet(function (chart) {});
     counter.render();
-  }
+  } //drawLobbyistsCounter();
+  //Window resize function
 
-  drawLobbyistsCounter(); //Window resize function
 
   window.onresize = function (event) {
     resizeGraphs();
@@ -66410,7 +66422,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58954" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62201" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

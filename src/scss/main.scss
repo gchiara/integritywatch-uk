@@ -2,7 +2,7 @@
 //$color_TI: #3b95d0;
 $color_TI: #3694d1;
 $color_TI_darker: darken( $color_TI, 20% );
-$color_lobby: #ecb005;
+$color_lobby: #3694d1;
 
 /* TOP SPACING*/
 
@@ -30,6 +30,9 @@ $color_lobby: #ecb005;
   .navbar-brand {
     img {
       height: 50px;
+      @media only screen and (max-width: 769px) {
+        height: 35px;
+      }
     }
   }
   a {
@@ -37,6 +40,9 @@ $color_lobby: #ecb005;
     color: #fff;
     &.active, &:hover {
       color: #0f4c79;
+    }
+    @media only screen and (max-width: 769px) {
+      font-size: 14px;
     }
   }
   .dropdown-item {
@@ -96,9 +102,16 @@ $color_lobby: #ecb005;
   text-align: left;
   padding: 30px 70px 20px 20px;
   position: relative;
+  @media only screen and (max-width: 769px) {
+    font-size: 14px;
+  }
   h1 {
     font-size: 30px;
     margin-bottom: 20px;
+    @media only screen and (max-width: 769px) {
+      font-size: 18px;
+      font-weight: bold;
+    }
   }
   a {
     color: #eee;
@@ -167,7 +180,7 @@ $color_lobby: #ecb005;
   .subrow-title {
     display: inline-block;
     text-align: left;
-    color: #04294b;
+    color: #d73771;
     border-radius: 2px;
     font-size: 24px;
     font-weight: 600;
@@ -176,6 +189,12 @@ $color_lobby: #ecb005;
     &.subrow-title-right {
       text-align: right;
       color: $color_lobby;
+    }
+    @media only screen and (max-width: 769px) {
+      font-size: 20px;
+      width: 100%;
+      text-align: center !important;
+      padding: 0px 10px;
     }
   }
 }
@@ -208,6 +227,34 @@ $color_lobby: #ecb005;
   }
   &.tab_a_5 {
     height: 648px;
+  }
+  @media only screen and (max-width: 1410px) {
+    &.tab_a_1 {
+      height: 510px;
+    }
+    &.tab_a_2 {
+      height: 510px;
+    }
+    &.tab_a_4 {
+      height: 655px;
+    }
+    &.tab_a_5 {
+      height: 655px;
+    }
+  }
+  @media only screen and (max-width: 1180px) {
+    &.tab_a_1 {
+      height: 520px;
+    }
+    &.tab_a_2 {
+      height: 520px;
+    }
+    &.tab_a_4 {
+      height: 663px;
+    }
+    &.tab_a_5 {
+      height: 663px;
+    }
   }
   @media only screen and (max-width: 767px) {
     height: auto !important;
@@ -268,10 +315,17 @@ $color_lobby: #ecb005;
     float: left;
     margin-left: 10px;
     @media only screen and (min-width: 900px) {
-      width: 370px;
+      width: 450px;
     }
     @media only screen and (max-width: 767px) {
-      width: 200px;
+      width: 400px;
+      margin-left: 0px;
+      top: 12px;
+      left: -5px;
+      max-width: 80%;
+      -webkit-transform: translateY(0%);
+      -ms-transform: translateY(0%);
+          transform: translateY(0%);
     }
     i {
       vertical-align: middle;
@@ -290,16 +344,28 @@ $color_lobby: #ecb005;
       background: rgba(0,0,0,0.2);
       border: none;
       padding: 15px 10px 15px 50px;
-      font-size: 18px;
+      font-size: 17px;
       color: #fff;
+      @media only screen and (max-width: 767px) {
+        padding: 10px 10px 10px 50px;
+      }
       &:focus {
         outline-color: #fff;
       }
       &::placeholder {
         color: #fff;
+        text-transform: uppercase;
         @media only screen and (max-width: 767px) {
           opacity: 0;
         }
+      }
+      &:-ms-input-placeholder { /* Internet Explorer 10-11 */
+        color: #fff;
+        text-transform: uppercase;
+      }
+      &::-ms-input-placeholder { /* Microsoft Edge */
+        color: #fff;
+        text-transform: uppercase;
       }
     }
   }
@@ -359,6 +425,14 @@ $color_lobby: #ecb005;
       background: rgb(206, 74, 88);
       outline: none;
     }
+    @media only screen and (max-width: 767px) {
+      right: 10px;
+      top: 12px;
+      -webkit-transform: translateY(0%);
+      -ms-transform: translateY(0%);
+          transform: translateY(0%);
+      padding: 10px 15px;
+    }
     .reset-btn-text {
       @media only screen and (max-width: 767px) {
         display: none;
@@ -379,6 +453,12 @@ $color_lobby: #ecb005;
     -webkit-transform: translateY(-50%);
       -ms-transform: translateY(-50%);
           transform: translateY(-50%);
+          @media only screen and (max-width: 767px) {
+      position: relative;
+      width: 100%;
+      right: 0;
+      top: auto;
+    }
     button {
       color: #fff;
       background: none;
@@ -389,10 +469,16 @@ $color_lobby: #ecb005;
       i {
         font-size: 35px;
         vertical-align: middle;
+        @media only screen and (max-width: 767px) {
+          font-size: 23px;
+        }
       }
       img {
         height: 25px;
         vertical-align: middle;
+        @media only screen and (max-width: 767px) {
+          height: 18px;
+        }
       }
       &.btn-twitter {
         img {
@@ -402,11 +488,17 @@ $color_lobby: #ecb005;
       &.btn-fb {
         img {
           height: 29px;
+          @media only screen and (max-width: 767px) {
+            height: 21px;
+          }
         }
       }
       &.btn-linkedin {
         img {
           height: 29px;
+          @media only screen and (max-width: 767px) {
+            height: 18px;
+          }
         }
       }
     }
@@ -444,6 +536,12 @@ $color_lobby: #ecb005;
     }
     .subject {
       margin: 0 auto;
+    }
+    @media only screen and (max-width: 769px) {
+      font-size: 14px;
+    }
+    @media only screen and (max-width: 340px) {
+      font-size: 12px;
     }
   }
   .details-title {
@@ -557,6 +655,9 @@ table.dataTable thead .sorting_desc_disabled {
   background-repeat: no-repeat;
   background-position: center right;
   padding-right: 30px;
+  @media only screen and (max-width: 767px) {
+    padding-right: 20px;
+  }
 }
 table.dataTable thead .sorting {
   background-image: url("../../public/images/dt/sort_both.png");
@@ -667,8 +768,12 @@ table.dataTable tbody tr:hover {
   }
   td, th {
     @media only screen and (max-width: 768px) {
-      font-size: 14px;
+      font-size: 12px;
       vertical-align: middle !important;
+      padding-left: 5px;
+    }
+    @media only screen and (max-width: 340px) {
+      font-size: 11px;
     }
   }
   .dataTables_info, .dataTables_paginate, .dataTables_length {
@@ -720,6 +825,7 @@ table.dataTable tbody tr:hover {
     border: none;
     color: #fff;
     background: #3694d1;
+    text-transform: uppercase;
     border-radius: 2px;
     padding: 5px 15px;
     font-size: 20px;
@@ -728,6 +834,9 @@ table.dataTable tbody tr:hover {
     transition: all .4s;
     &:hover {
       background: #1a6a9e;
+    }
+    @media only screen and (max-width: 769px) {
+      width: 100%;
     }
   }
 }
@@ -825,8 +934,15 @@ table.dataTable tbody tr:hover {
 /* DATEPICKER */
 .datefilter-container {
   padding: 20px 0;
+  @media only screen and (max-width: 769px) {
+    font-size: 13px;
+  }
   input {
     padding: 5px;
+    max-width: 30%;
+    @media only screen and (max-width: 950px) {
+      max-width: 25%;
+    }
   }
   button {
     border: none;
@@ -840,4 +956,12 @@ table.dataTable tbody tr:hover {
       background: #1a6a9e;
     }
   }
+}
+
+/* Hide charts ticks after the first */
+.tick .grid-line {
+  opacity: 1;
+}
+.axis > .tick ~ .tick .grid-line {
+  opacity: 0;
 }

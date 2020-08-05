@@ -6,7 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Open Access UK</title>
     <!-- Add twitter and og meta here -->
-    <link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+    <meta property="og:url" content="https://openaccess.transparency.org.uk" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Open Access UK: monitor lobbying meetings with Government" />
+    <meta property="og:description" content="Who’s #lobbying the UK Parliament? Check Open Access UK" />
+    <meta property="og:image" content="https://openaccess.transparency.org.uk/images/thumbnail.png" />
+    <link rel='shortcut icon' type='image/x-icon' href='./favicon.ico' />
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Quicksand:500" rel="stylesheet">
@@ -105,12 +110,12 @@
                 <table class="table table-hover dc-data-table" id="dc-data-table">
                   <thead>
                     <tr class="header">
-                      <th class="header">Nr</th> 
+                      <th class="header">No</th> 
                       <th class="header">Host</th>
                       <th class="header">Position</th>
                       <th class="header">Department</th> 
                       <th class="header">Purpose</th> 
-                      <th class="header">Organisation</th> 
+                      <th class="header">Lobbyist</th> 
                       <th class="header">Date</th> 
                     </tr>
                   </thead>
@@ -147,11 +152,8 @@
             <div class="dc-data-count count-box">
               <div class="filter-count">0</div>out of <strong class="total-count">0</strong> meetings
             </div>
-            <div class="count-box count-box-orgs">
-              <div class="filter-count nborgs">0</div>out of <strong class="total-count">0</strong> organisations
-            </div>
             <div class="footer-input">
-              <input type="text" id="search-input" placeholder="Filter by Lobbyist, Host, Subject…">
+              <input type="text" id="search-input" placeholder="SEARCH BY LOBBYIST, HOST, SUBJECT">
               <i class="material-icons">search</i>
             </div>
           </div>
