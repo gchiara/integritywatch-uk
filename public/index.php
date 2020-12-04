@@ -138,7 +138,7 @@
             <div class="modal-body">
               <div class="container">
                 <div class="modal-title">
-                  <div>To submit a Freedom of Information request about this meeting visit <a href="" target="_blank">https://www.whatdotheyknow.com/</a></div>
+                  <div>To submit a Freedom of Information request about this meeting visit <a href="https://www.whatdotheyknow.com/" target="_blank">https://www.whatdotheyknow.com/</a></div>
                 </div>
               </div>
             </div>
