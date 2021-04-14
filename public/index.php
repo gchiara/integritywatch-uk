@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Open Access UK</title>
-    <!-- Add twitter and og meta here -->
+    <!-- Twitter and og meta here -->
     <meta property="og:url" content="https://openaccess.transparency.org.uk" />
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Open Access UK: monitor lobbying meetings with Government" />
