@@ -102,7 +102,7 @@ new Vue({
     share: function (platform) {
       if(platform == 'twitter'){
         var thisPage = window.location.href.split('?')[0];
-        var shareText = 'Share text here ' + thisPage;
+        var shareText = 'Who’s lobbying the UK Government? Find out here ' + thisPage;
         var shareURL = 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(shareText);
         window.open(shareURL, '_blank');
         return;
@@ -113,6 +113,14 @@ new Vue({
         window.open(shareURL, '_blank', 'toolbar=no,location=0,status=no,menubar=no,scrollbars=yes,resizable=yes,width=600,height=250,top=300,left=300');
         return;
       }
+    },
+    //Copy to clipboard
+    copyToClipboard: function(elId) {
+      var textToCopy = document.getElementById(elId);
+      textToCopy.select();
+      textToCopy.setSelectionRange(0, 99999);
+      document.execCommand("copy");
+      console.log("Copied: " + textToCopy.value);
     }
   }
 });
@@ -264,6 +272,16 @@ jQuery.extend( jQuery.fn.dataTableExt.oSort, {
   }
 });
 
+//Get URL parameters
+function getParameterByName(name, url) {
+  if (!url) url = window.location.href;
+  name = name.replace(/[\[\]]/g, '\\$&');
+  var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+      results = regex.exec(url);
+  if (!results) return null;
+  if (!results[2]) return '';
+  return decodeURIComponent(results[2].replace(/\+/g, ' '));
+}
 //Generate random parameter for dynamic dataset loading (to avoid caching)
 var randomPar = '';
 var randomCharacters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -273,15 +291,16 @@ for ( var i = 0; i < 5; i++ ) {
 //Load data and generate charts
 var lobbyist_typeList = {}
 csv('./data/iw_uk.csv?' + randomPar, (err, events) => {
+csv('./data/wdtk_departments.csv?' + randomPar, (err, wdtkDepartments) => {
   var parseDate = d3.timeParse("%d/%m/%Y");
   var now = Date.now();
-  var RecordId = 0;
+  //var RecordId = 0;
   //Loop through data to aply fixes and calculations
   _.each(events, function (d) {
     if(!d.purpose){
       d.purpose = "";
     }
-    d.RecordId = RecordId;
+    //d.RecordId = RecordId;
     d.date1 = d.date;
     if(d.date != ""){
       d.date = parseDate(d.date);
@@ -308,7 +327,32 @@ csv('./data/iw_uk.csv?' + randomPar, (err, events) => {
       default:
         d.ministerialLevel = "Others";
     };
-    RecordId ++;
+    //RecordId ++;
+    var thisWdtkDep = _.find(wdtkDepartments, function (x) { return x.dep == d.department });
+    if(thisWdtkDep) {
+      d.department_wdtk = thisWdtkDep.wdtk_name;
+    } else {
+      d.department_wdtk = '';
+    }
+    //Generated url for pre-filled request
+    var requestBaseUrl = 'https://www.whatdotheyknow.com/new/';
+    var orgString = d.organisation;
+    if(orgString.length > 400) {
+      orgString = orgString.slice(0, 400);
+      var lastWord = orgString.lastIndexOf(' ');
+      orgString = orgString.substring(0, lastWord) + ' ...';
+    }
+    var formTitle = encodeURI('FOI request: Meeting held on '+ d.date1 +' with '+ d.rep_new +'.');
+    var formMessage = 'Could you please acknowledge my request is being considered.\r\n'
+    + 'For the meeting held on '+ d.date1 +' between '+ d.rep_new +' and '+ orgString +', with purpose '+ d.purpose +'\r\ncould you please provide the following information:\r\n\r\n'
+    + '• A full list of attendees, including full names and titles as well as who the attendee represents\r\n'
+    + '• A copy of the meeting agenda\r\n'
+    + '• Meeting notes/minutes taken during the meeting, as well as any briefing notes and papers\r\n'
+    + '• Any correspondence associated with the attendees, including debriefs of the meeting via email or other forms of communication.\r\n';
+    formMessage = encodeURI(formMessage);
+    d.requestFullUrl = requestBaseUrl + d.department_wdtk + '?title=' + formTitle + '&default_letter=' + formMessage;
+    //Meeting url
+    d.meetingUrl = window.location.href.split('?')[0] + '?meeting=' + d.RecordId;
   });
 
   //Set dc main vars. The second crossfilter is used to handle the travels stacked bar chart.
@@ -561,7 +605,7 @@ csv('./data/iw_uk.csv?' + randomPar, (err, events) => {
           "targets": 4,
           "defaultContent":"N/A",
           "data": function(d) {
-            return d.purpose;;
+            return d.purpose;
           }
         },
         {
@@ -841,4 +885,16 @@ csv('./data/iw_uk.csv?' + randomPar, (err, events) => {
   window.onresize = function(event) {
     resizeGraphs();
   };
+
+  //After loading charts, load meeting if meeting parameter in url is present
+  if(getParameterByName('meeting')) {
+    var preselectedMeetingId = getParameterByName('meeting');
+    //Find meeting by id. If it exists set it as selectedElement and open modal
+    var preselectedMeeting = _.find(events, function (x) { return x.RecordId == preselectedMeetingId });
+    if(preselectedMeeting) {
+      vuedata.selectedElement = preselectedMeeting;
+      $('#detailsModal').modal();
+    }
+  }
+})
 })

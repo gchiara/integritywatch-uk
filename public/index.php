@@ -9,8 +9,9 @@
     <meta property="og:url" content="https://openaccess.transparency.org.uk" />
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Open Access UK: monitor lobbying meetings with Government" />
-    <meta property="og:description" content="Who’s #lobbying the UK Parliament? Check Open Access UK" />
-    <meta property="og:image" content="https://openaccess.transparency.org.uk/images/thumbnail.png" />
+    <meta property="og:description" content="Who’s #lobbying the UK Government? Check Open Access UK" />
+    <!-- <meta property="og:image" content="https://openaccess.transparency.org.uk/images/thumbnail.png" /> -->
+    <meta property="og:image" content="http://www.chiaragirardelli.net/iw-uk-new/images/thumbnail.png" />
     <link rel='shortcut icon' type='image/x-icon' href='./favicon.ico' />
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -64,7 +65,7 @@
                     <input type="text" id="from" name="from">
                     <label for="to">to</label>
                     <input type="text" id="to" name="to">
-                    <button id="datefilter">Filter</button>
+                    <button id="datefilter"><strong>Filter</strong></button>
                   </div>
                 </div>
               </div>
@@ -131,14 +132,31 @@
           <div class="modal-content">
             <!-- Modal Header -->
             <div class="modal-header">
-              
+              <div class="modal-title">{{selectedElement.rep_new}} - {{selectedElement.date1}}</div>
               <button type="button" class="close" data-dismiss="modal"><i class="material-icons">close</i></button>
             </div>
             <!-- Modal body -->
             <div class="modal-body">
               <div class="container">
-                <div class="modal-title">
-                  <div>To submit a Freedom of Information request about this meeting visit <a href="https://www.whatdotheyknow.com/" target="_blank">https://www.whatdotheyknow.com/</a></div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <!-- Share link -->
+                    <div class="copy-input-container">
+                      <input type="text" :value="selectedElement.meetingUrl" id="chartUrlString" readonly>
+                      <button @click="copyToClipboard('chartUrlString')"><i class="material-icons">content_copy</i> Copy meeting URL</button>
+                    </div>
+                    <!-- Meeting details -->
+                    <div class="details-line"><span class="details-line-title">Date:</span> {{ selectedElement.date1 }}</div>
+                    <div class="details-line"><span class="details-line-title">Host:</span> {{ selectedElement.rep_new }}</div>
+                    <div class="details-line"><span class="details-line-title">Position:</span> {{ selectedElement.policy_level }}</div>
+                    <div class="details-line"><span class="details-line-title">Department:</span> {{ selectedElement.department }}</div>
+                    <div class="details-line"><span class="details-line-title">Lobbyist:</span> {{ selectedElement.organisation }}</div>
+                    <div class="details-line"><span class="details-line-title">Purpose:</span> {{ selectedElement.purpose }}</div>
+                    <div class="modal-request-cta">
+                      <div v-if="selectedElement.department_wdtk && selectedElement.department_wdtk !== ''">To submit a Freedom of Information request about this meeting visit <a :href="selectedElement.requestFullUrl" target="_blank">https://www.whatdotheyknow.com/</a></div>
+                      <div v-else>To submit a Freedom of Information request about this meeting visit <a href="https://www.whatdotheyknow.com/" target="_blank">https://www.whatdotheyknow.com/</a></div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

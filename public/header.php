@@ -19,6 +19,9 @@
           <a class="dropdown-item" href="https://integritywatch.cl/" target="_blank">Chile</a>
         </div>
       </li>
+      <li class="nav-item">
+        <a href="https://www.transparency.org.uk/donate" class="donate-btn" target="_blank">DONATE</a>
+      </li>
     </ul>
     <ul class="navbar-nav ml-auto">
       <li class="nav-item">

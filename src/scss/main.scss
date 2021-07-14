@@ -525,11 +525,101 @@ $color_lobby: #3694d1;
   .modal-body {
     padding: 20px 10px 30px 10px;
   }
+  margin-bottom: 80px;
+  a {
+    color: #2e7db0;
+    font-weight: 600;
+  }
+  .details-line {
+    text-align: left;
+  }
+  .modal-divider {
+    height: 1px;
+    background: #eee;
+    margin: 30px -25px;
+  }
+  .modal-request-cta {
+    text-align: center;
+    margin: 20px auto 0 auto;
+    width: 100%;
+    font-size: 20px;
+    .date {
+      margin: 0 auto;
+      font-weight: 600;
+    }
+    .subject {
+      margin: 0 auto;
+    }
+    @media only screen and (max-width: 769px) {
+      font-size: 14px;
+    }
+    @media only screen and (max-width: 340px) {
+      font-size: 12px;
+    }
+  }
+  .modal-table-title {
+    font-weight: 600;
+    text-align: left;
+    margin: 10px 0 10px 0;
+  }
+  .modal-table {
+    width: 100%;
+    thead {
+      tr {
+        th {
+          background:#2e7db0;
+          color: #fff;
+          padding: 5px 10px;
+          border: 2px solid #fff;
+          font-weight: 500;
+        }
+      }
+    }
+    tbody {
+      tr {
+        padding: 0;
+        &:nth-child(even) {
+          background: #fafafa;
+        }
+        &:nth-child(odd) {
+          background: #f4f4f4;
+        }
+        td {
+          padding: 10px;
+          border: 2px solid #fff;
+          font-size: 13px;
+        }
+      }
+    }
+  }
+  .modal-table-else {
+    text-align: left;
+  }
+  .details-tables-buttons {
+    text-align: left;
+    button {
+      border: none;
+      color: #fff;
+      background: #2a7aae;
+      border-radius: 2px;
+      padding: 5px 15px;
+      font-size: 16px;
+      font-weight: 400;
+      margin: 0px 2px 5px 0;
+      cursor: pointer;
+      transition: all .4s;
+      &:hover {
+        background: #1a6a9e;
+      }
+    }
+  }
   .modal-title {
     text-align: center;
     margin: 0 auto;
     width: 100%;
     font-size: 20px;
+    font-weight: 600;
+    color: #04294b;
     .date {
       margin: 0 auto;
       font-weight: 600;
@@ -601,6 +691,36 @@ $color_lobby: #3694d1;
     }
   }
 }
+.copy-input-container {
+  margin-bottom: 30px;
+  input {
+    text-align: center;
+    width: 450px;
+    max-width: 100%;
+    color: #555;
+    border: none;
+    border-radius: 3px;
+    background: #eee;
+    padding: 5px 10px;
+  }
+  button {
+    text-align: center;
+    border: none;
+    border-radius: 3px;
+    background: #ef494a;
+    padding: 5px 10px;
+    color: #fff; 
+    @media only screen and (max-width: 769px) {
+      margin-top: 10px;
+    }
+    i {
+      text-align: center;
+      font-size: 15px;
+      position: relative;
+      top: 2px;
+    }
+  }
+}
 
 /* CSS edits for plugins and libraries */
 
@@ -628,14 +748,14 @@ $color_lobby: #3694d1;
 }
 .dc-chart g.row text {
   font-family: 'Quicksand', sans-serif;
-  font-weight: 400;
+  font-weight: 600;
   fill: #333;
   font-size: 13px;
 }
 .dc-legend .dc-legend-item {
     cursor: pointer;
     font-family: 'Quicksand', sans-serif;
-    font-weight: 400;
+    font-weight: 600;
     fill: #333;
     font-size: 13px;
 }
@@ -841,83 +961,6 @@ table.dataTable tbody tr:hover {
   }
 }
 
-/* INFO MODAL STYLING */
-#detailsModal {
-  margin-bottom: 80px;
-  a {
-    color: #2e7db0;
-    font-weight: 600;
-  }
-  .modal-title {
-    font-weight: 600;
-    color: #04294b;
-  }
-  .details-line {
-    text-align: left;
-  }
-  .modal-divider {
-    height: 1px;
-    background: #eee;
-    margin: 30px -25px;
-  }
-  .modal-table-title {
-    font-weight: 600;
-    text-align: left;
-    margin: 10px 0 10px 0;
-  }
-  .modal-table {
-    width: 100%;
-    thead {
-      tr {
-        th {
-          background:#2e7db0;
-          color: #fff;
-          padding: 5px 10px;
-          border: 2px solid #fff;
-          font-weight: 500;
-        }
-      }
-    }
-    tbody {
-      tr {
-        padding: 0;
-        &:nth-child(even) {
-          background: #fafafa;
-        }
-        &:nth-child(odd) {
-          background: #f4f4f4;
-        }
-        td {
-          padding: 10px;
-          border: 2px solid #fff;
-          font-size: 13px;
-        }
-      }
-    }
-  }
-  .modal-table-else {
-    text-align: left;
-  }
-  .details-tables-buttons {
-    text-align: left;
-    button {
-      border: none;
-      color: #fff;
-      background: #2a7aae;
-      border-radius: 2px;
-      padding: 5px 15px;
-      font-size: 16px;
-      font-weight: 400;
-      margin: 0px 2px 5px 0;
-      cursor: pointer;
-      transition: all .4s;
-      &:hover {
-        background: #1a6a9e;
-      }
-    }
-  }
-}
-
 /* Mobile tables */
 .tabA {
   .chart-table {
@@ -964,4 +1007,19 @@ table.dataTable tbody tr:hover {
 }
 .axis > .tick ~ .tick .grid-line {
   opacity: 0;
+}
+
+.donate-btn {
+  vertical-align: middle;
+  display: inline-block;
+  color: #fff;
+  background: #e5007d;
+  padding: 12px 15px;
+  margin: 0 20px;
+  text-decoration: none;
+  &:hover {
+    background: #d10072;
+    color: #fff !important;
+    text-decoration: none;
+  }
 }
