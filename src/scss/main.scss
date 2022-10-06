@@ -1023,3 +1023,12 @@ table.dataTable tbody tr:hover {
     text-decoration: none;
   }
 }
+
+/* DC legend vertical alignment fix */
+.dc-legend{
+  .dc-legend-item {
+    rect  {
+      y: -5px !important;
+    }
+  }
+}
