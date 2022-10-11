@@ -14,10 +14,13 @@ Department for Work and Pensions,dwp
 Department of Health and Social Care,dhsc
 Deputy Prime Minister's Office,cabinet_office
 Foreign & Commonwealth Office,fco
+"Foreign, Commonwealth & Developments Office",fco
+"Foreign, Commonwealth & Development Office",fco
 HM Treasury,hm_treasury
 Home Office,home_office
 Ministry of Defence,mod
 "Ministry of Housing, Communities & Local Government",mhclg
+"Department for Levelling Up, Housing and Communities",mhclg
 Ministry of Justice,moj
 Northern Ireland Office,nio
 Office of the Advocate General for Scotland,office_of_the_advocate_general_for_scotland
@@ -25,3 +28,4 @@ Office of the Secretary of State for Scotland,scotland_office
 Office of the Secretary of State for Wales,wales_office_swyddfa_cymru
 Prime Minister's Office,number_10
 Whips' office,cabinet_office
+Whips' Office,cabinet_office
